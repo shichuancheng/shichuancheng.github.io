@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社--http://www.zhinengshe.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{background:#1abc9c;}
+        #ul1{
+            height: 160px;
+            margin: 200px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #ul1 li{
+            width: 256px;
+            height: 160px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #ul1 img{
+            width: 256px;
+            vertical-align: top;
+        }
+    </style>
+    <script src="move.js"></script>
+    <script>
+        window.onload = function () {
+            var oUl=document.getElementById('ul1');
+            var aLi=oUl.children;
+
+            // 布局
+            var W=30;
+            oUl.style.width=aLi[0].offsetWidth+(aLi.length-1)*W+'px';
+            for(var i=1; i<aLi.length; i++){
+                aLi[i].style.left=aLi[0].offsetWidth+(i-1)*W+'px';
+            }
+
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].index=i;
+                aLi[i].onmouseenter=function(){
+                    for(var i=1; i<aLi.length; i++){
+                        if(i<=this.index){
+                            move(aLi[i], {left: i*W},{opation:1000});
+                        }else{
+                            move(aLi[i], {left: aLi[0].offsetWidth+(i-1)*W},{opation:1000});
+                        }
+                    }
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li><img src="images/sfq1.jpg"></li>
+        <li><img src="images/sfq2.jpg"></li>
+        <li><img src="images/sfq3.jpg"></li>
+        <li><img src="images/sfq4.jpg"></li>
+        <li><img src="images/sfq5.jpg"></li>
+        <li><img src="images/sfq6.jpg"></li>
+    </ul>
+</body>
+</html>

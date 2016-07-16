@@ -1,1 +1,331 @@
-gifhifeghuifbuhiefbhigsbuhigbhuigbhuiu
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/index.css">
+<script src="js/move.js"></script>
+<script>
+	window.onload=function(){
+		//content运动
+		var oBanner=document.getElementById('banner');
+		var aBan_li=oBanner.getElementsByTagName('li');
+		var oCon_text=document.getElementById('con_text');
+		var aCon_li=oCon_text.getElementsByTagName('li');
+		
+		//吸顶条
+		window.onscroll=function(){
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;	
+	        var oBanner=document.querySelector('#top_banner');
+
+	        if(document.body.scrollTop>0){
+	         	oBanner.style.position='fixed';
+	         	oBanner.style.zIndex=999;
+	         	oBanner.style.left=0;
+	         	oBanner.style.top=0;
+	        }else{
+	        	oBanner.style.position='';
+	        }
+		};
+        //banner运动部分
+		var oBlock=aBan_li[aBan_li.length-1];
+		var timer;
+
+	         for(var i=0; i<aBan_li.length; i++){
+	         	aBan_li[i].index=i;
+	         	aBan_li[i].onclick=function(){
+	         		clearInterval(timer);
+					move(oCon_text,{top:-600*this.index},{duration:500});
+
+	         		elastic(oBlock,this.offsetLeft);
+
+	         	//滚轮滚动
+	         	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+	         	var _this=this;
+	         	document.documentElement.scrollTop=document.body.scrollTop=document.body.scrollTop=80*this.index;
+	    				
+	         }
+        };
+        //banner运动部分
+		//时钟
+		function toDouble(n){
+            return n<10?'0'+n:''+n;
+        }
+        var oClock=document.getElementById('clock');
+        var aImg=oClock.getElementsByTagName('img');
+        function clock(){
+            var oDate=new Date();
+            var str=toDouble(oDate.getHours())+toDouble(oDate.getMinutes())+toDouble(oDate.getSeconds());
+            for(var i=0; i<aImg.length; i++){
+                // aImg[i].style.top=-35*str.charAt(i)+'px';
+                move(aImg[i], {top: -35*str.charAt(i)}, {easing: 'linear', duration: 500});
+            }
+        }
+        clock();
+        setInterval(clock, 1000);
+        //时钟
+
+        //JS
+        	//JS-拉钩滑动效果
+        	function getPos(obj){
+        	    var l=0;
+        	    var t=0;
+        	    while(obj){
+        	        l+=obj.offsetLeft;
+        	        t+=obj.offsetTop;
+        	        obj=obj.offsetParent;
+        	    }
+        	    return {left:l,top:t}
+        	}
+        	function hoverDir(obj, ev){
+	            var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+	            var x=getPos(obj).left+obj.offsetWidth/2-ev.clientX;
+	            var y=getPos(obj).top+obj.offsetHeight/2-ev.clientY-scrollTop;
+
+	            return Math.round((Math.atan2(y, x)*180/Math.PI+180)/90)%4;
+	        }
+	        var ojs_block=document.getElementById('js_block');
+	        var aJs_block_li=ojs_block.children;
+
+	        for(var i=0; i<aJs_block_li.length; i++){
+	            aJs_block_li[i].onmouseenter=function(ev){
+	                var oEvent=ev || event;
+	                var n=hoverDir(this, oEvent);
+	                var oSpan=this.children[0];
+	                switch(n){
+	                    case 0:
+	                        oSpan.style.left='200px';
+	                        oSpan.style.top=0;
+	                        break;
+	                    case 1:
+	                        oSpan.style.left=0;
+	                        oSpan.style.top='200px';
+	                        break;
+	                    case 2:
+	                        oSpan.style.left='-200px';
+	                        oSpan.style.top=0;
+	                        break;
+	                    case 3:
+	                        oSpan.style.left=0;
+	                        oSpan.style.top='-200px';
+	                        break;
+	                }
+	                move(oSpan, {left: 0, top: 0});
+	            };
+	            aJs_block_li[i].onmouseleave=function(ev){
+	                var oEvent=ev || event;
+	                var n=hoverDir(this, oEvent);
+
+	                var oSpan=this.children[0];
+	                switch(n){
+	                    case 0:
+	                        move(oSpan, {left: 200, top: 0});
+	                        break;
+	                    case 1:
+	                        move(oSpan, {left: 0, top: 200});
+	                        break;
+	                    case 2:
+	                        move(oSpan, {left: -200, top: 0});
+	                        break;
+	                    case 3:
+	                        move(oSpan, {left: 0, top: -200});
+	                        break;
+	                }
+	            };
+	        }
+        	//JS-拉钩滑动效果
+
+        	//字体分步运动
+        	var　oName=document.getElementById('name');
+        	var oName_span=oName.getElementsByTagName('span');
+        	var iNow=0;
+
+        	//字体鼠标划入效果
+        	oName.onmouseover=function(){
+        		for(var i=0; i<oName_span.length; i++){
+        			oName_span[i].style.color='#5115A2';
+        		}
+        	};
+        	oName.onmouseout=function(){
+        		for(var i=0; i<oName_span.length; i++){
+        			oName_span[i].style.color='#fff';
+        		}
+        	};
+        	var oResume_a=document.getElementById('resume_a');
+        	oResume_a.onmouseover=function(){
+        		for(var i=0; i<oName_span.length; i++){
+        			oName_span[i].style.color='#F75000';
+        		}
+        	};
+        	//字体鼠标划入效果
+
+        	var timer;
+        	timer=setInterval(function(){
+        		move(oName_span[iNow],{opacity:1,font_Size:100},{duration:300});
+        		iNow++;
+
+        		if(iNow==oName_span.length){
+        			clearInterval(timer);
+        		}
+        	},300);
+        	//字体分步运动
+        	/*//name字体放大
+        	var oName3=document.getElementById('name3');
+        	var oName3_span=oName3.getElementsByTagName('span');
+
+        	oName3.onmouseenter=function(){
+        		move(oName3,{})
+        	}
+        	//name字体放大*/
+
+        	//css部分
+        	var oCss_box=document.getElementById('css_box');
+        	var oCss_ul=document.getElementById('css_ul');
+        	var oCss_li=oCss_ul.getElementsByTagName('li');
+        	var oCss_img=oCss_ul.getElementsByTagName('img');
+        	for(var i=0; i<oCss_li.length; i++){
+        		var oCss_span=document.createElement('span');
+        		oCss_li[i].appendChild(oCss_span);
+        	}
+        	
+        	oCss_ul.style.width=oCss_li[0].offsetWidth*oCss_li.length+'px';
+        	var oBoxC=oCss_box.offsetWidth/2;
+
+        	oCss_ul.onmousedown=function(ev){
+        		var oEvent=ev||event;
+        		var disX=oEvent.clientX-oCss_ul.offsetLeft;
+        		document.onmousemove=function(ev){
+        			var oEvent=ev||event;
+        			var l=oEvent.clientX-disX;
+           		    if(l>oBoxC-(1-0.5)*oCss_li[0].offsetWidth){
+        				l=oBoxC-(1-0.5)*oCss_li[0].offsetWidth;
+        			}
+        			if(l<oBoxC-(oCss_li.length-0.5)*oCss_li[0].offsetWidth){
+        				l=oBoxC-(oCss_li.length-0.5)*oCss_li[0].offsetWidth;
+        			}
+        			oCss_ul.style.left=l+'px';
+        			setSize();
+        		};
+        		document.onmouseup=function(){
+        			document.onmousemove=null;
+        			document.onmouseup=null;
+        		};
+        		return false;
+        	};
+        	
+	        oCss_ul.style.left=oCss_box-(2-0.5)*oCss_li[0].offsetWidth+'px';
+        	function setSize(){
+        		for(var i=0; i<oCss_li.length; i++){
+        				var c=Math.abs(oBoxC-(oCss_li[i].offsetLeft+oCss_li[i].offsetWidth/2+oCss_ul.offsetLeft));
+        				var scale=1-c/500; 
+		
+        				 oCss_img[i].style.width=scale*700+'px';
+        				 oCss_img[i].style.marginLeft=-(scale*700-350)/2+'px';
+        				 oCss_img[i].style.marginTop=-(scale*438-219)/2+'px';
+        				 oCss_li[i].style.zIndex=scale*1000;
+
+        				 oCss_li[i].innerHTML[1]=scale.toFixed(2);
+        			}
+        	}
+        	setSize();
+
+        //css部分
+	};
+</script>
+</head>
+<body>
+	<div class="all">
+		<div class="banner" id="top_banner">
+			<ol class="clearfix fr" id="banner">
+				<li><a href="javascript:;">首页</a></li>
+				<li><a href="javascript:;">CSS作品页</a></li>
+				<li><a href="javascript:;">JS作品页</a></li>
+				<li><a href="javascript:;">H5作品页</a></li>
+				<li><a href="javascript:;">个人简介</a></li>
+				<li class="block" id="block"></li>
+			</ol>
+			<ul class="clock" id="clock">
+		        <li><img src="images/num.png"></li>
+		        <li><img src="images/num.png"></li>
+		        <li>:</li>
+		        <li><img src="images/num.png"></li>
+		        <li><img src="images/num.png"></li>
+		        <li>:</li>
+		        <li><img src="images/num.png"></li>
+		        <li><img src="images/num.png"></li>
+		    </ul>
+		</div>
+		<div class="content">
+			<ul class="text" id="con_text">
+				<li class="bug">
+					<div class="photo"></div>
+					<div id="name">
+						<div class="name">
+							<span>哈</span>
+							<span>喽</span>
+							<span>大</span>
+							<span>家</span>
+							<span>好</span>
+							<span>！</span>
+						</div>
+							<div class="name3" id="name3">
+							<span>我</span>
+							<span>是</span>
+							<span>程</span>
+							<span>士</span>
+							<span>川</span>
+						</div>
+						<div class="name2">
+							<span>欢</span>
+							<span>迎</span>
+							<span>来</span>
+							<span>到</span>
+							<span>我</span>
+							<span>的</span>
+							<span>代</span>
+							<span>码</span>
+							<span>世</span>
+							<span>界</span>
+						</div>
+					</div>
+					<div class="resume active" id="resume"><a href="javascript:;" id="resume_a">下载我的简历</a>
+						<div class="resume_1" id="resume_1"></div>
+					</div>
+				</li>
+				<li>
+					<!--css-->
+					<div class="css_box" id="css_box">	
+						<ul class="css_ul" id="css_ul">
+							<li><img src="images/abt-2.jpg"></li>
+							<li><img src="images/abt-2.jpg"></li>
+							<li><img src="images/abt-2.jpg"></li>
+							<li><img src="images/abt-2.jpg"></li>
+							<li><img src="images/abt-2.jpg"></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<!--js-->
+					<ul class="js_block clearfix" id="js_block">
+						<li class="one"><span>吞吐照片效果</span><a href="javascript/ttzp.html" target="_blank"></a></li>
+						<li class="two"><span>照片墙效果</span><a href="javascript/zpq.html" target="_blank"></a></li>
+						<li class="three"><span>手机滑动效果</span><a href="javascript//iphone.html" target="_blank"></a></li>
+						<li class="four"><span>手风琴效果</span><a href="javascript/sfq.html" target="_blank"></a></li>
+						<li class="five"><span>放大镜效果</span><a href="javascript/fangdajing.html" target="_blank"></a></li>
+						<li class="six"><span>瀑布流效果</span><a href="javascript/pbl.html" target="_blank"></a></li>			
+						<li class="seven"><span>苹果菜单效果</span><a href="javascript/pgcd.html" target="_blank"></a></li>
+						<li class="eight"><span>手风琴效果</span><a href="http://www.baidu.com" target="_blank"></a></li>
+					</ul>
+				</li>
+				<li>
+					<div class="h5"></div>
+				</li>
+				<li>
+					<div class="resume_block"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+.all{
+  width:100%;
+  height:100%; 
+  background:#1abc9c;
+  font-family: 'Microsoft Yahei';
+}
+/*banner*/
+.all .banner{
+  width:100%; height:60px; 
+  overflow: hidden;
+  background:#A6A6D2;
+  opacity: 0.9;
+}
+.banner ol{
+  width:600px; 
+  height:60px;
+  position: relative;
+}
+.banner ol li{
+  width:90px; 
+  height:30px;
+  float:left; 
+  margin-right:20px;  
+  text-align:center; 
+  line-height:30px; 
+  margin-top:18px;
+}
+.banner ol li.active{
+	color:#666;
+}
+.banner ol li a{
+  font-size:16px;
+  font-weight:bold;
+  color:#000;
+}
+/*时钟*/
+.banner .clock{
+	width: 200px;
+	margin-top:15px;
+	margin-left:10px;
+}
+.banner .clock li{
+	float: left;
+	font-size: 30px;
+	width: 24px;
+	height: 35px;
+	overflow: hidden;
+	position: relative;
+}
+.banner .clock img{
+	position: absolute;
+	left: 0;
+    top: 0;
+}
+.banner .block{
+	width:90px;
+	height:30px;
+	background:#ccc;
+	opacity: 0.8;
+	position: absolute;
+	left:0;
+	top:0;
+	z-index: -9;
+}
+/*时钟*/
+/*banner*/
+/*content*/
+.all .content{
+  width:100%; 
+  height:3000px;  
+  opacity: 0.8; 
+  position: relative;
+  overflow: hidden;
+}
+.content .text{
+  position: absolute; 
+  left:0; 
+  top:0; 
+  width:100%;
+  height:3000px;
+}
+.content ul .bug{
+  width:100%; 
+  height:600px; 
+  overflow: hidden;
+}
+/*content*/
+/*text*/
+.text{
+  position: absolute;
+  left:0; 
+  top:0;
+}
+/*照片*/
+.text li{
+	perspective:800px;
+}
+.text li .photo{
+	width:200px;
+	height:200px;
+	border-radius:50%;
+	text-align:center;
+	margin:10px auto;
+	background:url(../images/pho.jpg);
+	background-size:cover;
+	transition:1s all ease;
+}
+.text li .photo:hover{
+	-webkit-transform:scale(1.1) rotateY(360deg) ;
+	-ms-transform:scale(1.1) rotateY(360deg) ;
+	-moz-transform:scale(1.1) rotateY(360deg) ;
+}
+.text .bug{
+	overflow: hidden;
+}
+/*照片*/
+/*name*/
+.text .name{
+	width:180px;
+	height:30px;
+	margin:0 auto;
+	text-align: center;
+	margin-bottom:10px;
+	-moz-text-shadow:-5px -10px 50px;
+}
+.text .name2{
+	width:300px;
+	height:30px;
+	margin:0 auto;
+	text-align: center;
+	text-shadow:-5px -10px 50px;
+}
+.text .name span{
+	width:30px;
+	height:30px;
+	font-size:30px;
+	float:left;
+	opacity:0;
+}
+.text .name2 span{
+	width:30px;
+	height:30px;
+	font-size:30px;
+	float:left;
+	opacity:0;
+	text-shadow:-5px -10px 50px;
+}
+.text .name3{
+	width:180px;
+	height:30px;
+	margin:0 auto;
+	margin-bottom:10px;
+	text-shadow:-5px -10px 50px;
+}
+.text .name3 span{
+	width:30px;
+	height:30px;
+	font-size:30px;
+	float:left;
+	opacity:0;
+}
+/*name*/
+/*简历*/
+.text .resume{
+	width:100px;
+	height:30px;
+	border:2px solid #999;
+	line-height: 30px;
+	margin:0 auto;
+	margin-top:40px;
+	position: relative;
+}
+.text .resume.active{
+	border:2px solid #ccc;
+}
+.text .resume_1{
+	width:0;
+	border-top:2px solid #ccc;
+	position: absolute;
+	left:-201px;
+	top:-2px;
+}
+.text .resume a{
+	font-size:16px;
+	color:#F75000;
+}
+/*简历*/
+.text li{
+	width:100%;
+	height:600px;
+}
+/*css_box*/
+.text .css_box{
+	width:800px;
+	height:450px;
+	border:1px solid #ccc;
+	margin:40px auto;
+	position: relative;
+	overflow: hidden;
+	position: relative;
+}
+.text .css_ul{
+	width:100%;
+	position: absolute;
+	left:0;
+	top:50%;
+	margin-top:-110px;
+}
+.text .css_ul li{
+	width:350px;
+	height:219px;
+	float:left;
+	padding:0 10px;
+	position: relative;
+}
+.text .css_ul li span{
+	width:100%;
+	height:100%;
+	position: absolute;
+	left:0;
+	top:0;
+}
+.text .css_ul li img{
+	width:100%;
+}
+/*css_box*/
+/*JS—block*/
+.text li .js_block{
+	width:888px;
+	margin:25px auto;
+	z-index: 999;
+}
+.text li .js_block li{
+	width:200px;
+	height:200px;
+	border:1px solid red;
+	margin:10px;
+	float:left;
+	position: relative;
+	overflow: hidden;
+	font-size:20px;
+	text-align:center;
+	line-height:200px;
+}
+.text li .js_block li.one{
+	background:url(../images/tu.png);
+	background-size:cover;
+}
+.text li .js_block li.two{
+	background:url(../images/zpq.png);
+	background-size:cover;
+}
+.text li .js_block li.three{
+	background:url(../images/iphone.png);
+	background-size:cover;
+}
+.text li .js_block li.four{
+	background:url(../images/sfq.png) no-repeat;
+	background-size:100%;
+}
+.text li .js_block li.five{
+	background:url(../images/fdj.png);
+	background-size:cover;
+}
+.text li .js_block li.six{
+	background:url(../images/pul.png);
+	background-size:cover;
+}
+.text li .js_block li.seven{
+	background:url(../images/max.png);
+	background-size:cover;
+}
+.text li .js_block li.eight{
+	background:url(../images/tu.png);
+	background-size:cover;
+}
+.text li .js_block li span{
+	width:200px;
+	height:200px;
+	background:#F75000;
+	position: absolute;
+	left:200px;
+	top:0;
+	font-size:30px;
+	color:#fff;
+	text-align: center;
+	line-height: 200px;
+}
+.text li .js_block li a{
+	display: block;
+	width:200px;
+	height:200px;
+	position: absolute;
+	left:0;
+	top:0;
+}
+/*JS—block*/
+/*h5*/
+.text li .h5{
+	width:500px;
+	height:550px;
+	border:1px solid #ccc;
+	margin-left:30px;
+}
+/*h5*/
+/*个人简历*/
+.text li .resume_block{
+	width:500px;
+	height:550px;
+	border:1px solid #ccc;
+	margin-left:30px;
+}
+/*个人简历*/
+/*text*/
